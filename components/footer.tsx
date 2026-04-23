@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Github, Linkedin, Twitter, Heart } from "lucide-react"
+import { Heart } from "lucide-react"
+import { SocialIcons } from "@/components/social-icons"
 
 const footerLinks = [
   { href: "#anasayfa", label: "Ana Sayfa" },
@@ -7,12 +8,6 @@ const footerLinks = [
   { href: "#hakkimda", label: "Hakkımda" },
   { href: "#projeler", label: "Projeler" },
   { href: "#iletisim", label: "İletişim" },
-]
-
-const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
 ]
 
 export function Footer() {
@@ -48,19 +43,8 @@ export function Footer() {
             ))}
           </nav>
 
-          <div className="flex justify-center md:justify-end gap-3">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors group"
-                aria-label={link.label}
-              >
-                <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-            ))}
+          <div className="flex justify-center md:justify-end w-full md:w-auto min-w-0">
+            <SocialIcons variant="footer" />
           </div>
         </div>
 

@@ -1,0 +1,331 @@
+/* Yuvarlak sosyal ikonlar + üst etiket (hover)
+   Geniş alan: tek satır | Dar alan: 4 + 3 (container query) */
+
+.social-icons {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  min-width: min(100%, 260px);
+  margin-inline: auto;
+  padding-block: 0.35rem;
+  container-type: inline-size;
+  container-name: social;
+}
+
+.social-icons__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.65rem;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ~7 ikon + aralıklar sığmıyorsa: 4 üst, 3 alt (alt satır ortalanır) */
+@container social (max-width: 430px) {
+  .social-icons__track {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    column-gap: 0.65rem;
+    row-gap: 0.65rem;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .social-icons__track > .icons:nth-child(5) {
+    grid-column: 2;
+  }
+
+  .social-icons__track > .icons:nth-child(6) {
+    grid-column: 3;
+  }
+
+  .social-icons__track > .icons:nth-child(7) {
+    grid-column: 4;
+  }
+}
+
+.social-icons.social-icons--align-start .social-icons__track {
+  justify-content: flex-start;
+  margin-inline: 0;
+}
+
+.social-icons.social-icons--align-start {
+  margin-inline: 0;
+}
+
+.social-icons.social-icons--footer {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: 0;
+  margin-left: auto;
+}
+
+.social-icons.social-icons--footer .social-icons__track {
+  justify-content: flex-end;
+}
+
+@media (max-width: 767px) {
+  .social-icons.social-icons--footer {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-icons.social-icons--footer .social-icons__track {
+    justify-content: center;
+  }
+}
+
+.social-icons .icons {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  z-index: 0;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-icons .iconName {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 0;
+  font-size: 12px;
+  color: #fff;
+  scale: 0;
+  border-radius: 3px;
+  text-align: center;
+  padding: 4px 8px;
+  white-space: nowrap;
+  transition: scale 0.3s ease;
+  transform-origin: center bottom;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.social-icons .icons:hover .iconName,
+.social-icons .icons:focus-visible .iconName {
+  scale: 1;
+}
+
+.social-icons .icons.github:hover .iconName,
+.social-icons .icons.github:focus-visible .iconName {
+  background: #24292f;
+}
+
+.social-icons .icons.linkedin:hover .iconName,
+.social-icons .icons.linkedin:focus-visible .iconName {
+  background: #0274b3;
+}
+
+.social-icons .icons.instaIcon:hover .iconName,
+.social-icons .icons.instaIcon:focus-visible .iconName {
+  background: linear-gradient(30deg, #0000ff, #f56040);
+}
+
+.social-icons .icons.whatsapp:hover .iconName,
+.social-icons .icons.whatsapp:focus-visible .iconName {
+  background: #25d366;
+}
+
+.social-icons .icons.telegram:hover .iconName,
+.social-icons .icons.telegram:focus-visible .iconName {
+  background-color: #0088cc;
+}
+
+.social-icons .icons.x-brand:hover .iconName,
+.social-icons .icons.x-brand:focus-visible .iconName {
+  background: #000000;
+}
+
+.social-icons .icons.email:hover .iconName,
+.social-icons .icons.email:focus-visible .iconName {
+  background: linear-gradient(
+    135deg,
+    #4285f4 0%,
+    #ea4335 38%,
+    #fbbc04 68%,
+    #34a853 100%
+  );
+}
+
+.social-icons .icon {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  transition: color 0.3s ease;
+  color: #0c0c0c;
+}
+
+.social-icons .icon svg {
+  position: relative;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.social-icons .icon:hover,
+.social-icons .icons:focus-visible .icon {
+  color: #fff;
+}
+
+.social-icons .icon::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+.social-icons .icon:hover::before,
+.social-icons .icons:focus-visible .icon::before {
+  height: 100%;
+  z-index: 0;
+}
+
+.social-icons .icon:hover,
+.social-icons .icons:focus-visible .icon {
+  box-shadow: 4px 4px 12px rgb(24 23 23 / 0.45);
+}
+
+.social-icons .icon.github::before {
+  background: #24292f;
+}
+
+.social-icons .icon.insta::before {
+  background: linear-gradient(40deg, #0000ff, #f56040);
+}
+
+.social-icons .icon.link::before {
+  background: #0274b3;
+}
+
+.social-icons .icon.whats::before {
+  background: #25d366;
+}
+
+.social-icons .icon.telegram::before {
+  background-color: #0088cc;
+}
+
+.social-icons .icon.x-brand::before {
+  background: #000000;
+}
+
+.social-icons .icon.mail::before {
+  background: linear-gradient(
+    135deg,
+    #4285f4 0%,
+    #ea4335 38%,
+    #fbbc04 68%,
+    #34a853 100%
+  );
+}
+
+/* X — varsayılan siyah logo; dolgu siyah olunca logo beyaz */
+.social-icons .icon.x-brand {
+  color: #000000;
+}
+
+.social-icons .icons.x-brand:hover .icon.x-brand,
+.social-icons .icons.x-brand:focus-visible .icon.x-brand {
+  color: #ffffff;
+}
+
+/* GitHub — aynı mantık: siyah logo, marka dolgusu üzerinde beyaz */
+.social-icons .icon.github {
+  color: #000000;
+}
+
+.social-icons .icons.github:hover .icon.github,
+.social-icons .icons.github:focus-visible .icon.github {
+  color: #ffffff;
+}
+
+/* Telegram — marka mavisi #0088cc, ikon GitHub/X gibi siyah → hover’da beyaz */
+.social-icons .icon.telegram {
+  color: #000000;
+}
+
+.social-icons .icons.telegram:hover .icon.telegram,
+.social-icons .icons.telegram:focus-visible .icon.telegram {
+  color: #ffffff;
+}
+
+/* Mail — GitHub / X ile aynı: siyah zarf, hover’da beyaz + Gmail gradyan dolgusu */
+.social-icons .icon.mail {
+  color: #000000;
+}
+
+.social-icons .icons.email:hover .icon.mail,
+.social-icons .icons.email:focus-visible .icon.mail {
+  color: #ffffff;
+}
+
+.dark .social-icons .icons {
+  background: oklch(0.96 0 0);
+}
+
+.dark .social-icons .icon {
+  color: #0c0c0c;
+}
+
+.dark .social-icons .icon.x-brand {
+  color: #000000;
+}
+
+.dark .social-icons .icons.x-brand:hover .icon.x-brand,
+.dark .social-icons .icons.x-brand:focus-visible .icon.x-brand {
+  color: #ffffff;
+}
+
+.dark .social-icons .icon.github {
+  color: #000000;
+}
+
+.dark .social-icons .icons.github:hover .icon.github,
+.dark .social-icons .icons.github:focus-visible .icon.github {
+  color: #ffffff;
+}
+
+.dark .social-icons .icon.telegram {
+  color: #000000;
+}
+
+.dark .social-icons .icons.telegram:hover .icon.telegram,
+.dark .social-icons .icons.telegram:focus-visible .icon.telegram {
+  color: #ffffff;
+}
+
+.dark .social-icons .icon.mail {
+  color: #000000;
+}
+
+.dark .social-icons .icons.email:hover .icon.mail,
+.dark .social-icons .icons.email:focus-visible .icon.mail {
+  color: #ffffff;
+}
