@@ -1,15 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, MapPin, Phone, Send, Linkedin, Github, Twitter } from "lucide-react"
+import { Mail, MapPin, Phone, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { SocialIcons } from "@/components/social-icons"
 
 const contactInfo = [
   {
     icon: Mail,
-    label: "E-posta",
+    label: "Mail",
     value: "dogukan@example.com",
     href: "mailto:dogukan@example.com",
   },
@@ -25,12 +26,6 @@ const contactInfo = [
     value: "İstanbul, Türkiye",
     href: "#",
   },
-]
-
-const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
 ]
 
 export function Contact() {
@@ -85,20 +80,7 @@ export function Contact() {
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-4">Sosyal Medya</h3>
-              <div className="flex gap-3">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-colors group"
-                    aria-label={link.label}
-                  >
-                    <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </a>
-                ))}
-              </div>
+              <SocialIcons align="start" className="max-w-full" />
             </div>
           </div>
 
@@ -120,7 +102,7 @@ export function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    E-posta
+                    Mail
                   </label>
                   <Input
                     id="email"
