@@ -1,11 +1,11 @@
-import { 
-  Globe, 
-  Smartphone, 
-  Database, 
-  Lightbulb, 
-  Palette, 
+import {
+  Globe,
+  Smartphone,
+  Database,
+  Palette,
   ShieldCheck,
-  ArrowUpRight
+  Wrench,
+  ArrowUpRight,
 } from "lucide-react"
 
 const services = [
@@ -34,13 +34,13 @@ const services = [
     features: ["API Geliştirme", "Veritabanı", "Performans"],
   },
   {
-    icon: Lightbulb,
+    icon: ShieldCheck,
     title: "Teknoloji Danışmanlığı",
     description: "İşinizi dijitale taşıyın. Teknoloji seçimi, sistem mimarisi ve dijital dönüşüm stratejileri.",
     features: ["Dijital Dönüşüm", "Strateji", "Optimizasyon"],
   },
   {
-    icon: ShieldCheck,
+    icon: Wrench,
     title: "Bakım & Destek",
     description: "Projelerinizin sürdürülebilirliği için düzenli bakım, güncelleme ve teknik destek hizmetleri.",
     features: ["7/24 Destek", "Güvenlik", "Güncellemeler"],
