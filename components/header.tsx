@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,42 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeHash, setActiveHash] = useState(navItems[0].href)
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""))
+
+    const getActiveHash = () => {
+      if (window.location.hash && navItems.some((item) => item.href === window.location.hash)) {
+        return window.location.hash
+      }
+
+      const scrollPosition = window.scrollY + 140
+      let currentHash = navItems[0].href
+
+      for (const id of sectionIds) {
+        const section = document.getElementById(id)
+        if (section && section.offsetTop <= scrollPosition) {
+          currentHash = `#${id}`
+        }
+      }
+
+      return currentHash
+    }
+
+    const updateActiveSection = () => {
+      setActiveHash(getActiveHash())
+    }
+
+    updateActiveSection()
+    window.addEventListener("scroll", updateActiveSection, { passive: true })
+    window.addEventListener("hashchange", updateActiveSection)
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection)
+      window.removeEventListener("hashchange", updateActiveSection)
+    }
+  }, [])
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
@@ -32,7 +68,12 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
+                className={`px-4 py-2 text-sm transition-colors rounded-lg ${
+                  activeHash === item.href
+                    ? "bg-secondary text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                }`}
+                onClick={() => setActiveHash(item.href)}
               >
                 {item.label}
               </Link>
@@ -62,8 +103,15 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-3 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
-                onClick={() => setIsMenuOpen(false)}
+                className={`px-4 py-3 transition-colors rounded-lg ${
+                  activeHash === item.href
+                    ? "bg-secondary text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                }`}
+                onClick={() => {
+                  setActiveHash(item.href)
+                  setIsMenuOpen(false)
+                }}
               >
                 {item.label}
               </Link>
