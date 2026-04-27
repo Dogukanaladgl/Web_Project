@@ -11,19 +11,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Mail",
-    value: "dogukan@example.com",
-    href: "mailto:dogukan@example.com",
+    value: "dogukana4250@gmail.com",
+    href: "mailto:dogukana4250@gmail.com",
   },
   {
     icon: Phone,
     label: "Telefon",
-    value: "+90 555 123 4567",
-    href: "tel:+905551234567",
+    value: "+90 541 263 5474",
+    href: "tel:+541263574",
   },
   {
     icon: MapPin,
     label: "Konum",
-    value: "İstanbul, Türkiye",
+    value: "Konya, Türkiye",
     href: "#",
   },
 ]
