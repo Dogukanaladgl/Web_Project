@@ -3,9 +3,9 @@ import { ArrowRight, BriefcaseBusiness, GraduationCap, Mail, MapPin, Sparkles } 
 import { Button } from "@/components/ui/button"
 
 const profileHighlights = [
-  { label: "Konum", value: "Turkiye", icon: MapPin },
-  { label: "Uzmanlik", value: "Web ve Mobil Gelistirme", icon: BriefcaseBusiness },
-  { label: "Egitim", value: "Bilgisayar Muhendisligi", icon: GraduationCap },
+  { label: "Konum", value: "Konya, Türkiye", icon: MapPin },
+  { label: "Uzmanlık Alanı", value: "Web ve Mobil Gelistirme", icon: BriefcaseBusiness },
+  { label: "Eğitim", value: "Bilgisayar Mühendisligi", icon: GraduationCap },
 ]
 
 const focusAreas = ["Next.js", "TypeScript", "React Native", "UI/UX", "Node.js"]
@@ -25,21 +25,21 @@ export function Hero() {
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-8">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm text-muted-foreground">Profil Ozeti</span>
+              <span className="text-sm text-muted-foreground">Profil Özeti</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
               <span className="text-foreground">Merhaba, ben</span>
               <br />
               <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
-                Dogukan Mehmet Aladagli
+                Doğukan Mehmet Aladağlı
               </span>
             </h1>
 
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl text-pretty">
-              Yazilim odakli bir profil olarak modern web ve mobil urunler gelistiriyorum. Kullanici deneyimi,
-              performans ve temiz kod prensiplerini bir araya getirerek markalarin dijitalde guclu bir ilk izlenim
-              birakmasina yardimci oluyorum.
+              Yazılım odaklı bir profil olarak modern web ve mobil ürünler geliştiriyorum. Kullanıcı deneyimi,
+              performans ve temiz kod prensiplerini bir araya getirerek markaların dijitalde güçlü bir ilk izlenim
+              bırakmasına yardımcı oluyorum.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -56,12 +56,12 @@ export function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row items-center sm:items-start gap-4">
               <Button asChild size="lg" className="group w-full sm:w-auto">
                 <Link href="#iletisim">
-                  Benimle Iletisime Gec
+                  Benimle İletişime Geç
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="#projeler">Projelerimi Incele</Link>
+                <Link href="#projeler">Projelerimi İncele</Link>
               </Button>
             </div>
           </div>
@@ -72,7 +72,7 @@ export function Hero() {
                 DM
               </div>
               <div>
-                <p className="text-lg font-semibold text-foreground">Dogukan Mehmet</p>
+                <p className="text-lg font-semibold text-foreground">Doğukan Mehmet</p>
                 <p className="text-sm text-muted-foreground">Junior Software Engineer</p>
               </div>
             </div>
@@ -95,7 +95,7 @@ export function Hero() {
               <Button asChild variant="secondary" className="w-full">
                 <Link href="#iletisim">
                   <Mail className="h-4 w-4 mr-2" />
-                  Teklif ve Is Birligi Icin Ulas
+                  Teklif ve İş Birliği İçin İletişime Geç
                 </Link>
               </Button>
             </div>
