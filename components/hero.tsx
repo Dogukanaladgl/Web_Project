@@ -6,9 +6,9 @@ import { ArrowRight, BriefcaseBusiness, GraduationCap, Mail, MapPin, Sparkles, D
 import { Button } from "@/components/ui/button"
 
 const profileHighlights = [
-  { label: "Konum", value: "Turkiye", icon: MapPin },
-  { label: "Uzmanlik", value: "Web ve Mobil Gelistirme", icon: BriefcaseBusiness },
-  { label: "Egitim", value: "Bilgisayar Muhendisligi", icon: GraduationCap },
+  { label: "Konum", value: "Konya, Türkiye", icon: MapPin },
+  { label: "Uzmanlık Alanı", value: "Web ve Mobil Gelistirme", icon: BriefcaseBusiness },
+  { label: "Eğitim", value: "Bilgisayar Mühendisligi", icon: GraduationCap },
 ]
 
 const focusAreas = ["Next.js", "TypeScript", "React Native", "UI/UX", "Node.js"]
@@ -67,8 +67,12 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-8"
             >
               <Sparkles className="h-4 w-4 text-primary" />
+
               <span className="text-sm text-muted-foreground">Profil Ozeti</span>
             </motion.div>
+
+              
+
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -78,6 +82,7 @@ export function Hero() {
             >
               <span className="text-foreground">Merhaba, ben</span>
               <br />
+
               <motion.span
                 className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent inline-block"
                 initial={{ opacity: 0, x: -20 }}
@@ -98,6 +103,9 @@ export function Hero() {
               performans ve temiz kod prensiplerini bir araya getirerek markalarin dijitalde guclu bir ilk izlenim
               birakmasina yardimci oluyorum.
             </motion.p>
+
+              
+
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -127,12 +135,12 @@ export function Hero() {
             >
               <Button asChild size="lg" className="group w-full sm:w-auto">
                 <Link href="#iletisim">
-                  Benimle Iletisime Gec
+                  Benimle İletişime Geç
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="#projeler">Projelerimi Incele</Link>
+                <Link href="#projeler">Projelerimi İncele</Link>
               </Button>
             </motion.div>
           </div>
@@ -154,7 +162,7 @@ export function Hero() {
                 DM
               </motion.div>
               <div>
-                <p className="text-lg font-semibold text-foreground">Dogukan Mehmet</p>
+                <p className="text-lg font-semibold text-foreground">Doğukan Mehmet</p>
                 <p className="text-sm text-muted-foreground">Junior Software Engineer</p>
               </div>
             </div>
@@ -188,7 +196,7 @@ export function Hero() {
               <Button asChild variant="secondary" className="w-full">
                 <Link href="#iletisim">
                   <Mail className="h-4 w-4 mr-2" />
-                  Teklif ve Is Birligi Icin Ulas
+                  Teklif ve İş Birliği İçin İletişime Geç
                 </Link>
               </Button>
               <Button asChild variant="outline" className="w-full">
