@@ -8,9 +8,10 @@ import { Button } from "@/components/ui/button"
 const navItems = [
   { href: "#anasayfa", label: "Ana Sayfa" },
   { href: "#hizmetler", label: "Hizmetler" },
-  { href: "#hakkimda", label: "Hakkımda" },
+  { href: "#hakkimda", label: "Hakkimda" },
+  { href: "#deneyim", label: "Deneyim" },
   { href: "#projeler", label: "Projeler" },
-  { href: "#iletisim", label: "İletişim" },
+  { href: "#iletisim", label: "Iletisim" },
 ]
 
 export function Header() {
