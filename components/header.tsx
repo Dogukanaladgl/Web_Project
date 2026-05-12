@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button"
 const navItems = [
   { href: "#anasayfa", label: "Ana Sayfa" },
   { href: "#hizmetler", label: "Hizmetler" },
-  { href: "#hakkimda", label: "Hakkimda" },
-  { href: "#deneyim", label: "Deneyim" },
-  { href: "#projeler", label: "Projeler" },
-  { href: "#iletisim", label: "Iletisim" },
+  { href: "#hakkimda", label: "Hakkımda" },
+  { href: "#deneyim", label: "Deneyimlerim" },
+  { href: "#projeler", label: "Projelerim" },
+  { href: "#iletisim", label: "İletişim" },
 ]
 
 export function Header() {
@@ -83,7 +83,7 @@ export function Header() {
 
           <div className="flex items-center gap-3">
             <Button asChild className="hidden sm:flex">
-              <Link href="#iletisim">Teklif Al</Link>
+              <Link href="#iletisim">Teklifte Bulunun</Link>
             </Button>
             <Button
               variant="ghost"
@@ -119,7 +119,7 @@ export function Header() {
             ))}
             <Button asChild className="mt-2">
               <Link href="#iletisim" onClick={() => setIsMenuOpen(false)}>
-                Teklif Al
+              Teklifte Bulunun
               </Link>
             </Button>
           </nav>

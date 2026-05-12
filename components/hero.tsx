@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button"
 
 const profileHighlights = [
   { label: "Konum", value: "Konya, Türkiye", icon: MapPin },
-  { label: "Uzmanlık Alanı", value: "Web ve Mobil Gelistirme", icon: BriefcaseBusiness },
-  { label: "Eğitim", value: "Bilgisayar Mühendisligi", icon: GraduationCap },
+  { label: "Uzmanlık Alanı", value: "Web ve Mobil Geliştirme", icon: BriefcaseBusiness },
+  { label: "Eğitim", value: "Bilgisayar Mühendisliği", icon: GraduationCap },
 ]
 
-const focusAreas = ["Next.js", "TypeScript", "React Native", "UI/UX", "Node.js"]
+
+const focusAreas = ["Nest.js", "PostgreSQL", "TypeScript", "React Native","Dart", "UI/UX", "Node.js","HTML","CSS",""]
 
 export function Hero() {
   return (
@@ -89,7 +90,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Dogukan Mehmet Aladagli
+                Doğukan Mehmet Aladağlı
               </motion.span>
             </motion.h1>
 
@@ -163,7 +164,7 @@ export function Hero() {
               </motion.div>
               <div>
                 <p className="text-lg font-semibold text-foreground">Doğukan Mehmet</p>
-                <p className="text-sm text-muted-foreground">Junior Software Engineer</p>
+                <p className="text-sm text-muted-foreground">Computer Engineer</p>
               </div>
             </div>
 
