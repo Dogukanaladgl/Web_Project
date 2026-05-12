@@ -5,10 +5,10 @@ import { motion, useInView } from "framer-motion"
 import { Code2, Users, FolderGit2, Coffee } from "lucide-react"
 
 const stats = [
-  { icon: FolderGit2, value: 25, suffix: "+", label: "Tamamlanan Proje" },
-  { icon: Users, value: 15, suffix: "+", label: "Mutlu Musteri" },
-  { icon: Code2, value: 10000, suffix: "+", label: "Satir Kod" },
-  { icon: Coffee, value: 500, suffix: "+", label: "Icilen Kahve" },
+  { icon: FolderGit2, value: 5, suffix: "+", label: "Tamamlanan Proje" },
+  { icon: Users, value: 10, suffix: "+", label: "Mutlu Müşteri" },
+  { icon: Code2, value: 10000, suffix: "+", label: "Satır Kod" },
+  { icon: Coffee, value: 500, suffix: "+", label: "İçilen Kahve Sayısı" },
 ]
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {

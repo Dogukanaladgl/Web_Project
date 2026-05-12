@@ -56,13 +56,13 @@ export function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Iletisim
+            İletişim
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Projenizi Konusalim
+            Projenizi Konuşalım
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Bir sonraki projeniz icin benimle iletisime gecin. Size en uygun cozumu birlikte bulalim.
+            Projeniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
           </p>
         </AnimatedSection>
 
@@ -128,8 +128,8 @@ export function Contact() {
                 >
                   <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
                 </motion.div>
-                <p className="text-xl font-semibold text-foreground">Mesajiniz Gonderildi!</p>
-                <p className="text-muted-foreground mt-2">En kisa surede size donus yapacagim.</p>
+                <p className="text-xl font-semibold text-foreground">Mesajınız Gönderildi!</p>
+                <p className="text-muted-foreground mt-2">En kısa sürede size dönüş yapacağım.</p>
               </motion.div>
 
               <div className="grid sm:grid-cols-2 gap-6 mb-6">
@@ -139,7 +139,7 @@ export function Contact() {
                   transition={{ duration: 0.4, delay: 0.3 }}
                 >
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Adiniz
+                    Adınız
                   </label>
                   <Input
                     id="name"
@@ -180,7 +180,7 @@ export function Contact() {
                 </label>
                 <Input
                   id="subject"
-                  placeholder="Proje hakkinda"
+                  placeholder="Proje Hakkında"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   required
@@ -194,11 +194,11 @@ export function Contact() {
                 className="mb-6"
               >
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Mesajiniz
+                  Mesajınız
                 </label>
                 <Textarea
                   id="message"
-                  placeholder="Projeniz hakkinda detayli bilgi verin..."
+                  placeholder="Projeniz Hakkında Detaylı Bilgi Verin..."
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
