@@ -9,23 +9,26 @@ import {
   Palette,
   ShieldCheck,
   Wrench,
-  ArrowUpRight,
 } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
+
+import "./flip-card.css"
 
 // Hizmetlerim Kısmı Kartları
 const services = [
   {
     icon: Globe,
     title: "Web Sitesi Geliştirme",
-    description: "Modern, hızlı ve SEO uyumlu web siteleri. React, Next.js ve en güncel teknolojilerle kurumsal ve kişisel projeler.",
+    description:
+      "Modern, hızlı ve SEO uyumlu web siteleri. React, Next.js ve en güncel teknolojilerle kurumsal ve kişisel projeler.",
     features: ["Responsive Tasarım", "SEO Optimizasyonu", "Hızlı Yükleme"],
   },
   {
     icon: Smartphone,
     title: "Mobil Uygulama",
-    description: "iOS ve Android platformları için kullanıcı dostu mobil uygulamalar. React Native ile cross-platform çözümler.",
-    features: ["Cross-Platform","React Native","Dart","Expo Go","Firebase"],
+    description:
+      "iOS ve Android platformları için kullanıcı dostu mobil uygulamalar. React Native ile cross-platform çözümler.",
+    features: ["Cross-Platform", "React Native", "Dart", "Expo Go", "Firebase"],
   },
   {
     icon: Palette,
@@ -36,72 +39,74 @@ const services = [
   {
     icon: Database,
     title: "Backend Gelistirme",
-    description: "Güçlü ve ölçeklenebilir sunucu tarafı çözümleri. API geliştirme ve veritabanı yönetimi.",
+    description:
+      "Güçlü ve ölçeklenebilir sunucu tarafı çözümleri. API geliştirme ve veritabanı yönetimi.",
     features: ["API Geliştirme", "Veritabanı", "Performans"],
   },
   {
     icon: ShieldCheck,
     title: "Teknoloji Danışmanlığı",
-    description: "İşinizi dijitale taşıyın. Teknoloji seçimi, sistem mimarisi ve dijital dönüşüm stratejileri.",
-    features: ["Dijital Dönüşüm", "Optimizasyon","Mimari Seçimi","Teknoloji Seçimi"],
+    description:
+      "İşinizi dijitale taşıyın. Teknoloji seçimi, sistem mimarisi ve dijital dönüşüm stratejileri.",
+    features: ["Dijital Dönüşüm", "Optimizasyon", "Mimari Seçimi", "Teknoloji Seçimi"],
   },
   {
     icon: Wrench,
     title: "Bakım & Destek",
-    description: "Projelerinizin sürdürülebilirliği için düzenli bakım, güncelleme ve teknik destek hizmetleri.",
-    features: ["7/24 Destek", "Güvenlik", "Güncellemeler","Bakım"],
+    description:
+      "Projelerinizin sürdürülebilirliği için düzenli bakım, güncelleme ve teknik destek hizmetleri.",
+    features: ["7/24 Destek", "Güvenlik", "Güncellemeler", "Bakım"],
   },
 ]
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ service, index }: { service: (typeof services)[0]; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
+  const Icon = service.icon
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="group relative p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="h-full min-h-[300px]"
     >
-      <div className="flex items-start justify-between mb-4">
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-          transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring", stiffness: 200 }}
-          className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors"
-        >
-          <service.icon className="h-6 w-6 text-primary" />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 10 }}
-          whileHover={{ x: 5 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-        </motion.div>
-      </div>
-      
-      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-        {service.title}
-      </h3>
-      <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
-      
-      <div className="flex flex-wrap gap-2">
-        {service.features.map((feature, featureIndex) => (
-          <motion.span
-            key={feature}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.05 + 0.3 }}
-            className="px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground"
-          >
-            {feature}
-          </motion.span>
-        ))}
+      <div
+        className="flip-card h-full min-h-[300px] rounded-[calc(var(--radius)+4px)] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        tabIndex={0}
+        role="group"
+        aria-label={`${service.title}: ayrıntılar için üzerine gelin veya odağı verin`}
+      >
+        <div className="flip-card-inner">
+          <div className="flip-card-front">
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.08 + 0.1, type: "spring", stiffness: 260 }}
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/15"
+            >
+              <Icon className="h-7 w-7 text-primary" aria-hidden />
+            </motion.div>
+            <h3 className="text-lg font-bold leading-snug text-foreground sm:text-xl">{service.title}</h3>
+          </div>
+
+          <div className="flip-card-back">
+            <div className="flip-card-back__body">
+              <p className="text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2 border-t border-border/60 pt-4">
+              {service.features.map((feature) => (
+                <span
+                  key={feature}
+                  className="inline-flex items-center rounded-full border border-border/80 bg-secondary px-3 py-1.5 text-xs font-medium text-foreground"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </motion.div>
   )
@@ -109,7 +114,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export function Services() {
   return (
-    <section id="hizmetler" className="py-24 bg-secondary/30">
+    <section id="hizmetler" className="relative border-y border-border/25 bg-transparent py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
@@ -123,7 +128,7 @@ export function Services() {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {services.map((service, index) => (
             <ServiceCard key={service.title} service={service} index={index} />
           ))}

@@ -286,12 +286,23 @@
   color: #ffffff;
 }
 
+/* Koyu temada da açık temadaki gibi tam beyaz daire — oklch(0.96) soluk/perdeli görünüyordu */
 .dark .social-icons .icons {
-  background: oklch(0.96 0 0);
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.45),
+    0 0 0 1px rgb(255 255 255 / 0.06);
 }
 
 .dark .social-icons .icon {
   color: #0c0c0c;
+}
+
+.dark .social-icons .icon:hover,
+.dark .social-icons .icons:focus-visible .icon {
+  box-shadow:
+    4px 6px 16px rgb(0 0 0 / 0.55),
+    0 0 0 1px rgb(255 255 255 / 0.08);
 }
 
 .dark .social-icons .icon.x-brand {

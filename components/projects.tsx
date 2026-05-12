@@ -1,16 +1,23 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useLayoutEffect, useRef, useState } from "react"
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion"
 import { ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedSection } from "./animated-section"
 
-// Projelerim Kısmı Kartları 
+// Projelerim Kısmı Kartları
 const projects = [
   {
     title: "E-Ticaret Platformu",
-    description: "Modern ve kullanici dostu bir e-ticaret web sitesi. Odeme entegrasyonu, stok yonetimi ve admin paneli ile tam kapsamli cozum.",
+    description:
+      "Modern ve kullanici dostu bir e-ticaret web sitesi. Odeme entegrasyonu, stok yonetimi ve admin paneli ile tam kapsamli cozum.",
     image: "/placeholder-project-1.jpg",
     tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
     liveUrl: "#",
@@ -19,7 +26,8 @@ const projects = [
   },
   {
     title: "Mobil Fitness Uygulamasi",
-    description: "Kisisellestirilmis antrenman programlari ve beslenme takibi sunan cross-platform mobil uygulama.",
+    description:
+      "Kisisellestirilmis antrenman programlari ve beslenme takibi sunan cross-platform mobil uygulama.",
     image: "/placeholder-project-2.jpg",
     tags: ["React Native", "Firebase", "Redux"],
     liveUrl: "#",
@@ -28,7 +36,8 @@ const projects = [
   },
   {
     title: "Kurumsal Web Sitesi",
-    description: "Sik ve profesyonel kurumsal kimlik yansitan, SEO optimizasyonlu ve hizli yuklenen web sitesi.",
+    description:
+      "Sik ve profesyonel kurumsal kimlik yansitan, SEO optimizasyonlu ve hizli yuklenen web sitesi.",
     image: "/placeholder-project-3.jpg",
     tags: ["React", "Tailwind CSS", "Framer Motion"],
     liveUrl: "#",
@@ -37,7 +46,8 @@ const projects = [
   },
   {
     title: "Task Yonetim Uygulamasi",
-    description: "Ekip isbirligi icin tasarlanmis, gercek zamanli guncellemeler ve bildirimlerle proje yonetim araci.",
+    description:
+      "Ekip isbirligi icin tasarlanmis, gercek zamanli guncellemeler ve bildirimlerle proje yonetim araci.",
     image: "/placeholder-project-4.jpg",
     tags: ["Next.js", "Socket.io", "MongoDB"],
     liveUrl: "#",
@@ -46,18 +56,28 @@ const projects = [
   },
 ]
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  scrollLinked,
+}: {
+  project: (typeof projects)[0]
+  index: number
+  scrollLinked?: boolean
+}) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
+      initial={scrollLinked ? false : { opacity: 0, y: 50 }}
+      animate={
+        scrollLinked ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+      }
+      transition={{ duration: 0.6, delay: scrollLinked ? 0 : index * 0.15 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
+      className="group shrink-0 snap-start rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 w-[min(22rem,calc(100vw-2.5rem))] sm:w-96 max-w-md"
     >
       <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`}>
         <motion.div
@@ -75,8 +95,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </motion.div>
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-        
-        {/* Hover overlay */}
+
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
@@ -106,29 +125,32 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </motion.a>
         </motion.div>
       </div>
-      
+
       <div className="p-6">
         <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
           {project.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4 text-pretty">
-          {project.description}
-        </p>
-        
+        <p className="text-muted-foreground text-sm mb-4 text-pretty">{project.description}</p>
+
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag, tagIndex) => (
             <motion.span
               key={tag}
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.3, delay: index * 0.15 + tagIndex * 0.05 + 0.3 }}
+              animate={
+                scrollLinked || isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+              }
+              transition={{
+                duration: 0.3,
+                delay: scrollLinked ? 0 : index * 0.15 + tagIndex * 0.05 + 0.3,
+              }}
               className="px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground"
             >
               {tag}
             </motion.span>
           ))}
         </div>
-        
+
         <div className="flex gap-3">
           <Button asChild size="sm" variant="outline" className="flex-1">
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -148,27 +170,107 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   )
 }
 
-export function Projects() {
+function ProjectsScrollStrip() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const stickyRef = useRef<HTMLDivElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [scrollMax, setScrollMax] = useState(0)
+
+  useLayoutEffect(() => {
+    const track = trackRef.current
+    const sticky = stickyRef.current
+    if (!track || !sticky) return
+
+    const measure = () => {
+      const vw = sticky.clientWidth
+      const max = Math.max(0, track.scrollWidth - vw)
+      setScrollMax(max)
+    }
+
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(track)
+    ro.observe(sticky)
+    window.addEventListener("resize", measure)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener("resize", measure)
+    }
+  }, [])
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  })
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollMax])
+
   return (
-    <section id="projeler" className="py-24 bg-secondary/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+    <div
+      ref={containerRef}
+      className="relative w-full"
+      style={
+        scrollMax > 0
+          ? { height: `calc(100dvh + ${scrollMax}px)` }
+          : { minHeight: "min(80dvh, 36rem)" }
+      }
+    >
+      <div
+        ref={stickyRef}
+        data-projects-sticky
+        className="sticky top-0 flex h-[100dvh] max-h-[100vh] items-center overflow-hidden"
+      >
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          className="flex w-max gap-6 will-change-transform pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8"
+        >
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} scrollLinked />
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+function ProjectsOverflowFallback() {
+  return (
+    <div className="-mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Proje kartları — yatay kaydırın"
+        className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 pt-1 snap-x snap-mandatory scroll-smooth scroll-pl-4 scroll-pr-4 sm:scroll-pl-6 sm:scroll-pr-6 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/70 hover:[&::-webkit-scrollbar-thumb]:bg-border"
+      >
+        {projects.map((project, index) => (
+          <ProjectCard key={project.title} project={project} index={index} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function Projects() {
+  const reduceMotion = useReducedMotion()
+  const preferOverflowScroll = reduceMotion === true
+
+  return (
+    <section id="projeler" className="relative border-y border-border/25 bg-transparent py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-16 text-center">
+          <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             Portfolyo
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
             Son Projelerim
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
             Gelistirdigim projelerden bazilari. Her biri farkli teknolojiler ve cozumler iceriyor.
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
-          ))}
-        </div>
+        {preferOverflowScroll ? <ProjectsOverflowFallback /> : <ProjectsScrollStrip />}
       </div>
     </section>
   )

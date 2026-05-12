@@ -17,10 +17,10 @@ const timelineData = [
   },
   {
     type: "work" as const,
-    title: "Stajyer ",
+    title: "Stajyer Full Stack Developer",
     organization: "Selçuk Üniversitesi Dijital Bilgi Teknolojileri ve Uygulama Birimi",
     location: "Türkiye",
-    period: "2026 Kasım - Devam Ediyor",
+    period: "2025 Kasım - Devam Ediyor",
     description: "Web ve mobil uygulama gelistirme projelerinde etkin olarak rol aldım. Bu alanda modern teknolojiler kullanarak müşterilerin dijital ihtiyaçlarını karşılamak için elimden geleni yapıyorum.",
     highlights: ["Dart", "React Native", "TypeScript", "Node.js","Nest.js","Firebase",],
   },
