@@ -5,10 +5,10 @@ import { SocialIcons } from "@/components/social-icons"
 const footerLinks = [
   { href: "#anasayfa", label: "Ana Sayfa" },
   { href: "#hizmetler", label: "Hizmetler" },
-  { href: "#hakkimda", label: "Hakkimda" },
+  { href: "#hakkimda", label: "Hakkımda" },
   { href: "#deneyim", label: "Deneyim" },
-  { href: "#projeler", label: "Projeler" },
-  { href: "#iletisim", label: "Iletisim" },
+  { href: "#projeler", label: "Projelerim" },
+  { href: "#iletisim", label: "İletişim" },
 ]
 
 export function Footer() {
