@@ -13,42 +13,43 @@ import {
 } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
 
+// Hizmetlerim Kısmı Kartları
 const services = [
   {
     icon: Globe,
-    title: "Web Sitesi Gelistirme",
-    description: "Modern, hizli ve SEO uyumlu web siteleri. React, Next.js ve en guncel teknolojilerle kurumsal ve kisisel projeler.",
-    features: ["Responsive Tasarim", "SEO Optimizasyonu", "Hizli Yukleme"],
+    title: "Web Sitesi Geliştirme",
+    description: "Modern, hızlı ve SEO uyumlu web siteleri. React, Next.js ve en güncel teknolojilerle kurumsal ve kişisel projeler.",
+    features: ["Responsive Tasarım", "SEO Optimizasyonu", "Hızlı Yükleme"],
   },
   {
     icon: Smartphone,
     title: "Mobil Uygulama",
-    description: "iOS ve Android platformlari icin kullanici dostu mobil uygulamalar. React Native ile cross-platform cozumler.",
-    features: ["Cross-Platform", "Kullanici Deneyimi", "Push Bildirimler"],
+    description: "iOS ve Android platformları için kullanıcı dostu mobil uygulamalar. React Native ile cross-platform çözümler.",
+    features: ["Cross-Platform","React Native","Dart","Expo Go","Firebase"],
   },
   {
     icon: Palette,
-    title: "UI/UX Tasarim",
-    description: "Kullanici odakli arayuz tasarimlari. Modern ve estetik gorsel kimlik olusturma.",
-    features: ["Prototipleme", "Kullanici Arastirmasi", "Marka Kimligi"],
+    title: "UI/UX Tasarım",
+    description: "Kullanıcı odaklı arayüz tasarımları. Modern ve estetik görsel kimlik oluşturma.",
+    features: ["Prototipleme", "Kullanıcı Araştırması", "Marka Kimligi"],
   },
   {
     icon: Database,
     title: "Backend Gelistirme",
-    description: "Guclu ve olceklenebilir sunucu tarafli cozumler. API gelistirme ve veritabani yonetimi.",
-    features: ["API Gelistirme", "Veritabani", "Performans"],
+    description: "Güçlü ve ölçeklenebilir sunucu tarafı çözümleri. API geliştirme ve veritabanı yönetimi.",
+    features: ["API Geliştirme", "Veritabanı", "Performans"],
   },
   {
     icon: ShieldCheck,
-    title: "Teknoloji Danismanligi",
-    description: "Isinizi dijitale tasiyin. Teknoloji secimi, sistem mimarisi ve dijital donusum stratejileri.",
-    features: ["Dijital Donusum", "Strateji", "Optimizasyon"],
+    title: "Teknoloji Danışmanlığı",
+    description: "İşinizi dijitale taşıyın. Teknoloji seçimi, sistem mimarisi ve dijital dönüşüm stratejileri.",
+    features: ["Dijital Dönüşüm", "Optimizasyon","Mimari Seçimi","Teknoloji Seçimi"],
   },
   {
     icon: Wrench,
-    title: "Bakim & Destek",
-    description: "Projelerinizin surdurulebilirligi icin duzenli bakim, guncelleme ve teknik destek hizmetleri.",
-    features: ["7/24 Destek", "Guvenlik", "Guncellemeler"],
+    title: "Bakım & Destek",
+    description: "Projelerinizin sürdürülebilirliği için düzenli bakım, güncelleme ve teknik destek hizmetleri.",
+    features: ["7/24 Destek", "Güvenlik", "Güncellemeler","Bakım"],
   },
 ]
 
