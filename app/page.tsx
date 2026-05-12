@@ -7,12 +7,14 @@ import { Timeline } from "@/components/timeline"
 import { Projects } from "@/components/projects"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+import { SiteBackground } from "@/components/site-background"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      <SiteBackground />
       <Header />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Stats />
         <Services />
@@ -21,7 +23,9 @@ export default function Home() {
         <Projects />
         <Contact />
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   )
 }
