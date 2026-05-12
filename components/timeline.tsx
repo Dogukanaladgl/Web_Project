@@ -8,7 +8,7 @@ import { AnimatedSection } from "./animated-section"
 const timelineData = [
   {
     type: "education" as const,
-    title: "Bilgisayar Mühendisligi",
+    title: "Bilgisayar Mühendisliği",
     organization: "Üniversite",
     location: "Türkiye",
     period: "2022 - 2026",
@@ -18,7 +18,7 @@ const timelineData = [
   {
     type: "work" as const,
     title: "Stajyer ",
-    organization: "Selçuk Üniversitesi Dijital Veri ve Bilgi Teknolojileri Birimi",
+    organization: "Selçuk Üniversitesi Dijital Bilgi Teknolojileri ve Uygulama Birimi",
     location: "Türkiye",
     period: "2026 Kasım - Devam Ediyor",
     description: "Web ve mobil uygulama gelistirme projelerinde etkin olarak rol aldım. Bu alanda modern teknolojiler kullanarak müşterilerin dijital ihtiyaçlarını karşılamak için elimden geleni yapıyorum.",
@@ -30,7 +30,7 @@ const timelineData = [
     organization: "Nevşehir Merkez Anadolu Lisesi",
     location: "Türkiye",
     period: "2017 - 2021",
-    description: "201 yılında Nevşehir Merkez Anadolu Lisesinden mezun oldum.",
+    description: "2021 yılında Nevşehir Merkez Anadolu Lisesinden mezun oldum.",
     highlights: [],
   },
 ]
