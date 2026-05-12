@@ -12,7 +12,7 @@ const profileHighlights = [
 ]
 
 
-const focusAreas = ["Nest.js", "PostgreSQL", "TypeScript", "React Native","Dart", "UI/UX", "Node.js","HTML","CSS",""]
+const focusAreas = ["React Native","Dart", "TypeScript", "Nest.js", "Node.js", "PostgreSQL","MsSQL", "Firebase", "UI/UX","HTML","CSS"]
 
 export function Hero() {
   return (
@@ -69,7 +69,7 @@ export function Hero() {
             >
               <Sparkles className="h-4 w-4 text-primary" />
 
-              <span className="text-sm text-muted-foreground">Profil Ozeti</span>
+              <span className="text-sm text-muted-foreground">Profil</span>
             </motion.div>
 
               
@@ -100,9 +100,9 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-lg text-muted-foreground max-w-2xl text-pretty"
             >
-              Yazilim odakli bir profil olarak modern web ve mobil urunler gelistiriyorum. Kullanici deneyimi,
-              performans ve temiz kod prensiplerini bir araya getirerek markalarin dijitalde guclu bir ilk izlenim
-              birakmasina yardimci oluyorum.
+              Yazılım geliştirmeyi sadece kod yazmak değil, kullanıcıya gerçekten fayda sağlayan ürünler 
+              ortaya çıkarmak olarak görüyorum.Web, mobil ve backend tarafında modern teknolojilerle çalışıyor; 
+              öğrenmeye, üretmeye ve kendimi sürekli geliştirmeye devam ediyorum.
             </motion.p>
 
               
@@ -163,7 +163,7 @@ export function Hero() {
                 DM
               </motion.div>
               <div>
-                <p className="text-lg font-semibold text-foreground">Doğukan Mehmet</p>
+                <p className="text-lg font-semibold text-foreground">Doğukan M. Aladağlı</p>
                 <p className="text-sm text-muted-foreground">Computer Engineer</p>
               </div>
             </div>

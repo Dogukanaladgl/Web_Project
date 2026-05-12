@@ -6,6 +6,7 @@ import { ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedSection } from "./animated-section"
 
+// Projelerim Kısmı Kartları 
 const projects = [
   {
     title: "E-Ticaret Platformu",

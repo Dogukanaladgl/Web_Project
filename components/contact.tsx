@@ -62,7 +62,7 @@ export function Contact() {
             Projenizi Konuşalım
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Projeniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
+            Projeleriniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
           </p>
         </AnimatedSection>
 
