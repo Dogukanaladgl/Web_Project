@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
+import { SectionLink } from "@/components/section-link"
 import { ArrowRight, BriefcaseBusiness, GraduationCap, Mail, MapPin, Sparkles, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -95,13 +95,13 @@ export function Hero() {
               className="mt-10 flex flex-col sm:flex-row items-center sm:items-start gap-4"
             >
               <Button asChild size="lg" className="group w-full sm:w-auto">
-                <Link href="#iletisim">
+                <SectionLink sectionId="iletisim">
                   Benimle İletişime Geç
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </SectionLink>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="#projeler">Projelerimi İncele</Link>
+                <SectionLink sectionId="projeler">Projelerimi İncele</SectionLink>
               </Button>
             </motion.div>
           </div>
@@ -155,16 +155,16 @@ export function Hero() {
               className="mt-6 pt-6 border-t border-border space-y-3"
             >
               <Button asChild variant="secondary" className="w-full">
-                <Link href="#iletisim">
+                <SectionLink sectionId="iletisim">
                   <Mail className="h-4 w-4 mr-2" />
                   Teklif ve İş Birliği İçin İletişime Geç
-                </Link>
+                </SectionLink>
               </Button>
               <Button asChild variant="outline" className="w-full">
-                <Link href="#deneyim">
+                <SectionLink sectionId="deneyim">
                   <Download className="h-4 w-4 mr-2" />
                   Deneyimlerimi Gor
-                </Link>
+                </SectionLink>
               </Button>
             </motion.div>
           </motion.div>
