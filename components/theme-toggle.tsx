@@ -19,7 +19,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="theme-switch-fixed" aria-hidden>
+      <div className="theme-switch-wrap" aria-hidden>
         <span
           className="switch inline-block opacity-0 pointer-events-none"
           style={{ width: SWITCH_W, height: SWITCH_H }}
@@ -29,7 +29,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <div className="theme-switch-fixed">
+    <div className="theme-switch-wrap">
       <label className="switch align-middle" htmlFor="theme-toggle-input">
         <input
           id="theme-toggle-input"

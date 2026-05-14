@@ -1,18 +1,10 @@
-/* Sabit sağ üst + daha ince iz (önceki 60×34 → ~50×26) */
+/* Header sağ aksiyon satırında akışta; pencere genişliğiyle çakışma olmaz */
 
-.theme-switch-fixed {
-  position: fixed;
-  top: max(0.75rem, env(safe-area-inset-top, 0px));
-  right: max(0.75rem, env(safe-area-inset-right, 0px));
-  z-index: 60;
+.theme-switch-wrap {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   line-height: 0;
-}
-
-@media (min-width: 640px) {
-  .theme-switch-fixed {
-    top: max(1rem, env(safe-area-inset-top, 0px));
-    right: max(1.25rem, env(safe-area-inset-right, 0px));
-  }
 }
 
 .switch {
