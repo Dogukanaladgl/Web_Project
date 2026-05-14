@@ -26,7 +26,7 @@ export function Footer() {
               <span className="font-bold text-lg text-foreground">Doğukan M. Aladağlı</span>
             </Link>
             <p className="text-sm text-muted-foreground text-center md:text-left text-pretty">
-              Junior Bilgisayar Mühendisi
+              Bilgisayar Mühendisi
               <br />
               Yazılım & Teknoloji Danışmanlığı
             </p>
@@ -54,8 +54,7 @@ export function Footer() {
             &copy; {currentYear} Doğukan Mehmet Aladağlı. Tüm hakları saklıdır.
           </p>
           <p className="flex items-center gap-1">
-            <Heart className="h-4 w-4 text-red-500" />
-            ile Türkiye&apos;de yapıldı
+            Türkiye&apos;de yapıldı.
           </p>
         </div>
       </div>
