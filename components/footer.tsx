@@ -1,15 +1,7 @@
 import Link from "next/link"
-import { Heart } from "lucide-react"
 import { SocialIcons } from "@/components/social-icons"
-
-const footerLinks = [
-  { href: "#anasayfa", label: "Ana Sayfa" },
-  { href: "#hizmetler", label: "Hizmetler" },
-  { href: "#hakkimda", label: "Hakkımda" },
-  { href: "#deneyim", label: "Deneyim" },
-  { href: "#projeler", label: "Projelerim" },
-  { href: "#iletisim", label: "İletişim" },
-]
+import { SectionLink } from "@/components/section-link"
+import { SITE_SECTION_NAV } from "@/lib/site-sections"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -26,21 +18,21 @@ export function Footer() {
               <span className="font-bold text-lg text-foreground">Doğukan M. Aladağlı</span>
             </Link>
             <p className="text-sm text-muted-foreground text-center md:text-left text-pretty">
-              Junior Bilgisayar Mühendisi
+              Bilgisayar Mühendisi
               <br />
               Yazılım & Teknoloji Danışmanlığı
             </p>
           </div>
 
           <nav className="flex flex-wrap justify-center gap-4">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
+            {SITE_SECTION_NAV.map((link) => (
+              <SectionLink
+                key={link.id}
+                sectionId={link.id}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
-              </Link>
+              </SectionLink>
             ))}
           </nav>
 
@@ -54,8 +46,7 @@ export function Footer() {
             &copy; {currentYear} Doğukan Mehmet Aladağlı. Tüm hakları saklıdır.
           </p>
           <p className="flex items-center gap-1">
-            <Heart className="h-4 w-4 text-red-500" />
-            ile Türkiye&apos;de yapıldı
+            Türkiye&apos;de yapıldı.
           </p>
         </div>
       </div>

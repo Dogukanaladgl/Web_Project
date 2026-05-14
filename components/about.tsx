@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { AnimatedSection, AnimatedStagger, AnimatedItem } from "./animated-section"
 
+//skiller
 const skills = [
   { name: "React / Next.js", level: 90, detail: "Modern ve performans odakli arayuzler" },
   { name: "TypeScript", level: 85, detail: "Tip guvenli ve surdurulebilir kod yapisi" },
@@ -69,6 +70,7 @@ function SkillCard({ skill, index }: { skill: typeof skills[0]; index: number })
   )
 }
 
+// Hakkımda 
 export function About() {
   return (
     <section id="hakkimda" className="py-24">
@@ -78,11 +80,11 @@ export function About() {
             Hakkimda
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-balance">
-            Tutkulu Bir Yazilim Gelistiricisi
+            Tutkulu Bir Yazılım Geliştirici
           </h2>
           <div className="space-y-4 text-muted-foreground max-w-3xl">
             <p className="text-pretty">
-              Merhaba! Ben <strong className="text-foreground">Dogukan Mehmet Aladagli</strong>, junior seviyede bir bilgisayar muhendisiyim. Teknolojiye olan tutkum ve surekli ogrenme istegim ile kendimi her gun gelistiriyorum.
+              Merhaba! Ben <strong className="text-foreground">Doğukan Mehmet Aladağlı</strong>, junior seviyede bir bilgisayar muhendisiyim. Teknolojiye olan tutkum ve surekli ogrenme istegim ile kendimi her gun gelistiriyorum.
             </p>
             <p className="text-pretty">
               Web tasarimi ve mobil uygulama gelistirme konularinda uzmanlaşarak, musterilerimin dijital dunyada guclu bir varlik olusturmalarına yardimci oluyorum. Her projede kalite, kullanici deneyimi ve modern teknolojileri on planda tutuyorum.
