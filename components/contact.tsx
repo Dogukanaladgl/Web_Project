@@ -30,6 +30,8 @@ const contactInfo = [
   },
 ]
 
+// İletişim Kısmı
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -62,7 +64,7 @@ export function Contact() {
             Projenizi Konuşalım
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Projeleriniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
+            Proje fikirleriniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
           </p>
         </AnimatedSection>
 
@@ -139,11 +141,11 @@ export function Contact() {
                   transition={{ duration: 0.4, delay: 0.3 }}
                 >
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Adınız
+                    İsim Soyisim
                   </label>
                   <Input
                     id="name"
-                    placeholder="Adinizi girin"
+                    placeholder="İsim Soyisim"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -161,7 +163,7 @@ export function Contact() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="ornek@email.com"
+                    placeholder="ornek@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required

@@ -121,10 +121,10 @@ export function Services() {
             Hizmetlerim
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Size Nasil Yardimci Olabilirim?
+            Size Nasıl Yardımcı Olabilirim?
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Yazilim ve teknoloji alaninda sunduğum profesyonel hizmetlerle projelerinizi hayata geciriyorum.
+            Yazılım ve teknoloji alanında sunduğum profesyonel hizmetlerle projelerinizi hayata geçiriyorum.
           </p>
         </AnimatedSection>
 
