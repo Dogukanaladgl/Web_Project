@@ -141,7 +141,7 @@ function TimelineCard({
           transition={{ duration: 2, repeat: Infinity }}
         >
           <Icon className="h-3.5 w-3.5" />
-          <span>{isEducation ? "Egitim" : "Is Deneyimi"}</span>
+          <span>{isEducation ? "Eğitim" : "İş Deneyimi"}</span>
         </motion.div>
 
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
@@ -221,13 +221,13 @@ export function Timeline() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Egitim ve Kariyer
+            Eğitim ve Kariyer
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Zaman Cizelgem
+            Kariyer Yolculuğum
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Egitim hayatim ve profesyonel kariyer yolculugum
+            Eğitim hayatım ve profesyonel kariyer yolculuğum süresince aldığım eğitimler ve yaptığım çalışmalar.
           </p>
         </AnimatedSection>
 
