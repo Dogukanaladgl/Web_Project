@@ -14,28 +14,19 @@ import { AnimatedSection } from "./animated-section"
 
 // Projelerim Kısmı Kartları
 const projects = [
+
   {
-    title: "E-Ticaret Platformu",
+    title: "Mobil Buzdolabı Uygulaması",
     description:
-      "Modern ve kullanici dostu bir e-ticaret web sitesi. Odeme entegrasyonu, stok yonetimi ve admin paneli ile tam kapsamli cozum.",
-    image: "/placeholder-project-1.jpg",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    liveUrl: "#",
-    githubUrl: "#",
-    color: "from-blue-500/20 to-cyan-500/20",
-  },
-  {
-    title: "Mobil Fitness Uygulamasi",
-    description:
-      "Kisisellestirilmis antrenman programlari ve beslenme takibi sunan cross-platform mobil uygulama.",
+      "Buzdolabınızda bulunan ürünlerin son kullanma tarihleri yaklaştıkça alarm vermesini sağlayan cross-platform mobil uygulama. Bu ",
     image: "/placeholder-project-2.jpg",
-    tags: ["React Native", "Firebase", "Redux"],
+    tags: ["Flutter","Dart", "Firebase", "Android", "iOS"],
     liveUrl: "#",
     githubUrl: "#",
     color: "from-green-500/20 to-emerald-500/20",
   },
   {
-    title: "Kurumsal Web Sitesi",
+    title: "Kütüphane Rezervasyon Sistemi",
     description:
       "Sik ve profesyonel kurumsal kimlik yansitan, SEO optimizasyonlu ve hizli yuklenen web sitesi.",
     image: "/placeholder-project-3.jpg",
@@ -43,8 +34,8 @@ const projects = [
     liveUrl: "#",
     githubUrl: "#",
     color: "from-purple-500/20 to-pink-500/20",
-  },
-  {
+  }
+  /*{
     title: "Task Yonetim Uygulamasi",
     description:
       "Ekip isbirligi icin tasarlanmis, gercek zamanli guncellemeler ve bildirimlerle proje yonetim araci.",
@@ -54,7 +45,7 @@ const projects = [
     githubUrl: "#",
     color: "from-orange-500/20 to-amber-500/20",
   },
-]
+*/ ]
 
 function ProjectCard({
   project,
@@ -263,10 +254,10 @@ export function Projects() {
             Portfolyo
           </span>
           <h2 className="text-balance text-3xl font-bold text-foreground sm:text-4xl">
-            Son Projelerim
+            Projelerim
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            Gelistirdigim projelerden bazilari. Her biri farkli teknolojiler ve cozumler iceriyor.
+            Geliştirdiğim projelerden bazıları aşağıda listelenmektedir. Dilediğiniz projeyi inceleyebilir; projede kullanılan teknolojileri ve programlama dilleri görebilirsiniz.
           </p>
         </AnimatedSection>
 

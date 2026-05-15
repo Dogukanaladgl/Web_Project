@@ -77,7 +77,7 @@ export function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Hakkimda
+            Hakkımda
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-balance">
             Tutkulu Bir Yazılım Geliştirici
@@ -87,10 +87,10 @@ export function About() {
               Merhaba! Ben <strong className="text-foreground">Doğukan Mehmet Aladağlı</strong>, junior seviyede bir bilgisayar muhendisiyim. Teknolojiye olan tutkum ve surekli ogrenme istegim ile kendimi her gun gelistiriyorum.
             </p>
             <p className="text-pretty">
-              Web tasarimi ve mobil uygulama gelistirme konularinda uzmanlaşarak, musterilerimin dijital dunyada guclu bir varlik olusturmalarına yardimci oluyorum. Her projede kalite, kullanici deneyimi ve modern teknolojileri on planda tutuyorum.
+              Web tasarımı ve mobil uygulama geliştirme konularında uzmanlaşarak, müşterilerimin dijital dünyada güçlü bir varlık olma yolunda yardımımı sağlıyorum. Her projede kalite, kullanıcı deneyimi ve modern teknolojileri on planda tutuyorum.
             </p>
             <p className="text-pretty">
-              Hedefim, teknoloji ile is dunyasi arasinda kopru kurarak, isletmelerin dijital donusum sureclerinde guvenilir bir partner olmak.
+              Hedefim, teknoloji ile iş dünyası arasında köprü kurarak, işletmelerin dijital dönüşüm süreçlerinde güvenilir bir partner olmak.
             </p>
           </div>
         </AnimatedSection>
