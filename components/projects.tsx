@@ -51,10 +51,12 @@ function ProjectCard({
   project,
   index,
   scrollLinked,
+  layout = "carousel",
 }: {
   project: (typeof projects)[0]
   index: number
   scrollLinked?: boolean
+  layout?: "carousel" | "grid"
 }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
@@ -68,7 +70,11 @@ function ProjectCard({
       }
       transition={{ duration: 0.6, delay: scrollLinked ? 0 : index * 0.15 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group shrink-0 snap-start rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 w-[min(22rem,calc(100vw-2.5rem))] sm:w-96 max-w-md"
+      className={
+        layout === "grid"
+          ? "group w-full rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
+          : "group shrink-0 snap-start rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 w-[min(22rem,calc(100vw-2.5rem))] sm:w-96 max-w-md"
+      }
     >
       <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`}>
         <motion.div
@@ -225,6 +231,22 @@ function ProjectsScrollStrip() {
   )
 }
 
+function ProjectsGrid() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5 }}
+      className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2"
+    >
+      {projects.map((project, index) => (
+        <ProjectCard key={project.title} project={project} index={index} layout="grid" />
+      ))}
+    </motion.div>
+  )
+}
+
 function ProjectsOverflowFallback() {
   return (
     <div className="-mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -245,11 +267,12 @@ function ProjectsOverflowFallback() {
 export function Projects() {
   const reduceMotion = useReducedMotion()
   const preferOverflowScroll = reduceMotion === true
+  const useScrollStrip = projects.length > 3 && !preferOverflowScroll
 
   return (
-    <section id="projeler" className="relative border-y border-border/25 bg-transparent py-24">
+    <section id="projeler" className="relative border-y border-border/25 bg-transparent py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="mb-16 text-center">
+        <AnimatedSection className="mb-8 text-center sm:mb-10">
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             Portfolyo
           </span>
@@ -261,7 +284,13 @@ export function Projects() {
           </p>
         </AnimatedSection>
 
-        {preferOverflowScroll ? <ProjectsOverflowFallback /> : <ProjectsScrollStrip />}
+        {useScrollStrip ? (
+          <ProjectsScrollStrip />
+        ) : preferOverflowScroll ? (
+          <ProjectsOverflowFallback />
+        ) : (
+          <ProjectsGrid />
+        )}
       </div>
     </section>
   )
