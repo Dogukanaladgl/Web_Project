@@ -54,7 +54,7 @@ export function Contact() {
   }
 
   return (
-    <section id="iletisim" className="py-24">
+    <section id="iletisim" className="py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
