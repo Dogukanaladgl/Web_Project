@@ -154,7 +154,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 1 }}
               className="mt-6 pt-6 border-t border-border space-y-3"
             >
-              <Button asChild variant="secondary" className="w-full">
+              <Button asChild variant="outline" className="w-full">
                 <SectionLink sectionId="iletisim">
                   <Mail className="h-4 w-4 mr-2" />
                   Teklif ve İş Birliği İçin İletişime Geç
