@@ -187,17 +187,17 @@ function ProjectsScrollStrip() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full -mb-12 sm:-mb-16"
       style={
         scrollMax > 0
           ? { height: `calc(100dvh + ${scrollMax}px)` }
-          : { minHeight: "min(80dvh, 36rem)" }
+          : { minHeight: "min(55dvh, 28rem)" }
       }
     >
       <div
         ref={stickyRef}
         data-projects-sticky
-        className="sticky top-0 flex h-[100dvh] max-h-[100vh] items-center overflow-hidden"
+        className="sticky top-16 flex h-[calc(100dvh-4rem)] max-h-[calc(100vh-4rem)] items-start overflow-hidden pt-2 sm:pt-3"
       >
         <motion.div
           ref={trackRef}
@@ -252,9 +252,9 @@ export function Projects() {
   const useScrollStrip = projects.length > 3 && !preferOverflowScroll
 
   return (
-    <section id="projeler" className="relative border-y border-border/25 bg-transparent py-16 sm:py-20">
+    <section id="projeler" className="relative border-y border-border/25 bg-transparent pt-16 pb-4 sm:pt-20 sm:pb-5">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="mb-8 text-center sm:mb-10">
+        <AnimatedSection className="mb-5 text-center sm:mb-6">
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             Portfolyo
           </span>
