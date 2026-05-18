@@ -15,11 +15,13 @@ import {
   SiHtml5,
   SiJavascript,
   SiNestjs,
+  SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
   SiReact,
   SiTailwindcss,
   SiTypescript,
+  SiV0,
 } from "react-icons/si"
 import { VscVscode } from "react-icons/vsc"
 import { Code2 } from "lucide-react"
@@ -37,6 +39,16 @@ type TechGroup = {
   items: Tech[]
 }
 
+/** react-icons/si içinde yok — Simple Icons EmailJS */
+const EmailJsIcon: IconType = (props) => (
+  <svg viewBox="0 0 24 24" role="img" aria-hidden {...props}>
+    <path
+      fill="currentColor"
+      d="M22.009 7.724V4.786a1.785 1.785 0 0 0-1.784-1.785h-3.84c-.686 0-1.275.388-1.575.955a1.787 1.787 0 0 0-1.575-.955H2.794A1.785 1.785 0 0 0 1.01 4.786v2.938l9.999 6.25 10-6.25zm0 1.811-10 6.25-10-6.25v10.675c0 .987.798 1.785 1.784 1.785h16.432a1.785 1.785 0 0 0 1.784-1.785V9.535z"
+    />
+  </svg>
+)
+
 const techGroups: TechGroup[] = [
   {
     title: "Mobil",
@@ -51,6 +63,7 @@ const techGroups: TechGroup[] = [
     title: "Web & API",
     items: [
       { name: "React", icon: SiReact, color: "#61DAFB" },
+      { name: "Next.js", icon: SiNextdotjs, color: "theme" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
@@ -58,6 +71,8 @@ const techGroups: TechGroup[] = [
       { name: "HTML 5", icon: SiHtml5, color: "#E34F26" },
       { name: "CSS 3", icon: SiCss, color: "#1572B6" },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "v0", icon: SiV0, color: "theme" },
+      { name: "EmailJS", icon: EmailJsIcon, color: "#32325D" },
       { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
       { name: "MsSQL", icon: DiMsqlServer, color: "#CC2927" },
     ],

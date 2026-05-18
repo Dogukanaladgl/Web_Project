@@ -148,17 +148,6 @@
   background: #000000;
 }
 
-.social-icons .icons.email:hover .iconName,
-.social-icons .icons.email:focus-visible .iconName {
-  background: linear-gradient(
-    135deg,
-    #4285f4 0%,
-    #ea4335 38%,
-    #fbbc04 68%,
-    #34a853 100%
-  );
-}
-
 .social-icons .icon {
   z-index: 1;
   display: flex;
@@ -236,16 +225,6 @@
   background: #000000;
 }
 
-.social-icons .icon.mail::before {
-  background: linear-gradient(
-    135deg,
-    #4285f4 0%,
-    #ea4335 38%,
-    #fbbc04 68%,
-    #34a853 100%
-  );
-}
-
 /* X — varsayılan siyah logo; dolgu siyah olunca logo beyaz */
 .social-icons .icon.x-brand {
   color: #000000;
@@ -273,16 +252,6 @@
 
 .social-icons .icons.telegram:hover .icon.telegram,
 .social-icons .icons.telegram:focus-visible .icon.telegram {
-  color: #ffffff;
-}
-
-/* Mail — GitHub / X ile aynı: siyah zarf, hover’da beyaz + Gmail gradyan dolgusu */
-.social-icons .icon.mail {
-  color: #000000;
-}
-
-.social-icons .icons.email:hover .icon.mail,
-.social-icons .icons.email:focus-visible .icon.mail {
   color: #ffffff;
 }
 
@@ -332,11 +301,3 @@
   color: #ffffff;
 }
 
-.dark .social-icons .icon.mail {
-  color: #000000;
-}
-
-.dark .social-icons .icons.email:hover .icon.mail,
-.dark .social-icons .icons.email:focus-visible .icon.mail {
-  color: #ffffff;
-}
