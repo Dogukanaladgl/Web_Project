@@ -2,25 +2,31 @@
 
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react"
+import { Mail, MapPin, Phone, Send, CheckCircle, Loader2, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { SocialIcons } from "@/components/social-icons"
 import { AnimatedSection } from "./animated-section"
+import {
+  getEmailJsErrorMessage,
+  isEmailJsConfigured,
+  sendContactEmail,
+} from "@/lib/emailjs"
+import { mailtoHref, socialConfig } from "@/lib/social-config"
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Mail",
-    value: "dogukana4250@gmail.com",
-    href: "mailto:dogukana4250@gmail.com",
+    value: socialConfig.email,
+    href: mailtoHref(socialConfig.email),
   },
   {
     icon: Phone,
     label: "Telefon",
     value: "+90 541 263 5474",
-    href: "tel:+541263574",
+    href: "tel:+905412635474",
   },
   {
     icon: MapPin,
@@ -40,17 +46,36 @@ export function Contact() {
     message: "",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const formRef = useRef(null)
   const isFormInView = useInView(formRef, { once: true, margin: "-50px" })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    setIsSubmitted(true)
-    setTimeout(() => {
-      setIsSubmitted(false)
+    setSubmitError(null)
+
+    if (!isEmailJsConfigured()) {
+      setSubmitError(
+        "Form henüz yapılandırılmadı. Proje kökünde .env.local dosyasına EmailJS bilgilerini ekleyin.",
+      )
+      return
+    }
+
+    setIsSending(true)
+    try {
+      await sendContactEmail(formData)
+      setIsSubmitted(true)
       setFormData({ name: "", email: "", subject: "", message: "" })
-    }, 3000)
+      setTimeout(() => setIsSubmitted(false), 4000)
+    } catch (err) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("[EmailJS]", err)
+      }
+      setSubmitError(getEmailJsErrorMessage(err))
+    } finally {
+      setIsSending(false)
+    }
   }
 
   return (
@@ -208,14 +233,32 @@ export function Contact() {
                   className="bg-secondary border-border resize-none transition-all focus:ring-2 focus:ring-primary/20"
                 />
               </motion.div>
+              {submitError && (
+                <div
+                  role="alert"
+                  className="mb-4 flex items-start gap-2 rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                >
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{submitError}</span>
+                </div>
+              )}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 0.5 }}
               >
-                <Button type="submit" size="lg" className="w-full group">
-                  <Send className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                  Mesaj Gonder
+                <Button type="submit" size="lg" className="w-full group" disabled={isSending}>
+                  {isSending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Gönderiliyor...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                      Mesaj Gönder
+                    </>
+                  )}
                 </Button>
               </motion.div>
             </form>

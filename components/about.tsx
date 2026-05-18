@@ -3,20 +3,25 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import type { IconType } from "react-icons"
+import { DiMsqlServer, DiVisualstudio } from "react-icons/di"
 import {
-  SiJavascript,
-  SiTypescript,
-  SiHtml5,
+  SiAndroidstudio,
   SiCss,
-  SiReact,
-  SiNextdotjs,
+  SiDart,
+  SiDocker,
   SiExpo,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiFigma,
+  SiFlutter,
   SiGit,
+  SiHtml5,
+  SiJavascript,
+  SiNestjs,
+  SiNodedotjs,
   SiPostgresql,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
 } from "react-icons/si"
+import { VscVscode } from "react-icons/vsc"
 import { Code2 } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
 
@@ -27,20 +32,65 @@ type Tech = {
   color: string
 }
 
-const techStack: Tech[] = [
-  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-  { name: "HTML", icon: SiHtml5, color: "#E34F26" },
-  { name: "CSS", icon: SiCss, color: "#1572B6" },
-  { name: "React", icon: SiReact, color: "#61DAFB" },
-  { name: "Next.js", icon: SiNextdotjs, color: "theme" },
-  { name: "React Native", icon: SiExpo, color: "#4630EB" },
-  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-  { name: "Figma", icon: SiFigma, color: "#F24E1E" },
-  { name: "Git", icon: SiGit, color: "#F05032" },
+type TechGroup = {
+  title: string
+  items: Tech[]
+}
+
+const techGroups: TechGroup[] = [
+  {
+    title: "Mobil",
+    items: [
+      { name: "Dart", icon: SiDart, color: "#0175C2" },
+      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+      { name: "Expo", icon: SiExpo, color: "#4630EB" },
+      { name: "Android Studio", icon: SiAndroidstudio, color: "#3DDC84" },
+    ],
+  },
+  {
+    title: "Web & API",
+    items: [
+      { name: "React", icon: SiReact, color: "#61DAFB" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+      { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+      { name: "HTML 5", icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS 3", icon: SiCss, color: "#1572B6" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { name: "MsSQL", icon: DiMsqlServer, color: "#CC2927" },
+    ],
+  },
+  {
+    title: "Araçlar & DevOps",
+    items: [
+      { name: "Git", icon: SiGit, color: "#F05032" },
+      { name: "Docker", icon: SiDocker, color: "#2496ED" },
+      { name: "VS Code", icon: VscVscode, color: "#007ACC" },
+      { name: "Visual Studio", icon: DiVisualstudio, color: "#5C2D91" },
+    ],
+  },
 ]
+
+function TechGroupSection({
+  group,
+  indexOffset,
+}: {
+  group: TechGroup
+  indexOffset: number
+}) {
+  return (
+    <div>
+      <h4 className="mb-3 text-sm font-semibold tracking-wide text-foreground">{group.title}</h4>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4">
+        {group.items.map((tech, i) => (
+          <TechCard key={tech.name} tech={tech} index={indexOffset + i} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function TechCard({ tech, index }: { tech: Tech; index: number }) {
   const ref = useRef(null)
@@ -96,10 +146,19 @@ export function About() {
             </div>
             <h3 className="text-xl font-semibold text-foreground">Teknik Yetenekler</h3>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {techStack.map((tech, index) => (
-              <TechCard key={tech.name} tech={tech} index={index} />
-            ))}
+          <div className="space-y-8">
+            {techGroups.map((group, groupIndex) => {
+              const indexOffset = techGroups
+                .slice(0, groupIndex)
+                .reduce((sum, g) => sum + g.items.length, 0)
+              return (
+                <TechGroupSection
+                  key={group.title}
+                  group={group}
+                  indexOffset={indexOffset}
+                />
+              )
+            })}
           </div>
         </AnimatedSection>
       </div>
