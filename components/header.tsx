@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
@@ -14,6 +14,12 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSectionId, setActiveSectionId] = useState<SiteSectionId>(SITE_SECTION_NAV[0].id)
   const headerRef = useRef<HTMLElement>(null)
+  const pendingSectionRef = useRef<SiteSectionId | null>(null)
+
+  const selectSection = useCallback((id: SiteSectionId) => {
+    pendingSectionRef.current = id
+    setActiveSectionId(id)
+  }, [])
 
   /** Eski veya paylaşılan #bölüm adresleri: bir kez kaydır ve URL’den hash’i kaldır */
   useEffect(() => {
@@ -37,7 +43,18 @@ export function Header() {
     const getActiveSectionId = () => {
       const headerH = headerRef.current?.offsetHeight ?? 72
       const threshold = headerH + 16
-      const line = scrollTop() + threshold
+      const y = scrollTop()
+      const line = y + threshold
+      const viewportBottom = y + window.innerHeight
+      const docHeight = document.documentElement.scrollHeight
+
+      // Sayfa sonunda son bölüm (İletişim) aktif kalsın — max scroll genelde bölüm üstünü geçmez
+      if (viewportBottom >= docHeight - 4) {
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          if (document.getElementById(sectionIds[i])) return sectionIds[i]
+        }
+      }
+
       let currentId: SiteSectionId = SITE_SECTION_NAV[0].id
 
       for (const id of sectionIds) {
@@ -51,17 +68,43 @@ export function Header() {
       return currentId
     }
 
+    let scrollEndTimer: ReturnType<typeof setTimeout> | undefined
+
     const updateActiveSection = () => {
+      const pending = pendingSectionRef.current
+      if (pending) {
+        const target = document.getElementById(pending)
+        const headerH = headerRef.current?.offsetHeight ?? 72
+        const line = scrollTop() + headerH + 16
+        const atPageBottom =
+          scrollTop() + window.innerHeight >= document.documentElement.scrollHeight - 4
+
+        if (target && (atPageBottom || Math.abs(sectionDocumentTop(target) - line) <= 32)) {
+          pendingSectionRef.current = null
+        } else {
+          setActiveSectionId(pending)
+          return
+        }
+      }
       setActiveSectionId(getActiveSectionId())
     }
 
+    const onScroll = () => {
+      updateActiveSection()
+      clearTimeout(scrollEndTimer)
+      scrollEndTimer = setTimeout(updateActiveSection, 120)
+    }
+
     updateActiveSection()
-    window.addEventListener("scroll", updateActiveSection, { passive: true })
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("scrollend", updateActiveSection, { passive: true })
     window.addEventListener("resize", updateActiveSection, { passive: true })
     window.addEventListener("load", updateActiveSection)
 
     return () => {
-      window.removeEventListener("scroll", updateActiveSection)
+      clearTimeout(scrollEndTimer)
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("scrollend", updateActiveSection)
       window.removeEventListener("resize", updateActiveSection)
       window.removeEventListener("load", updateActiveSection)
     }
@@ -97,7 +140,7 @@ export function Header() {
                       ? "font-semibold text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
-                  onClick={() => setActiveSectionId(item.id)}
+                  onClick={() => selectSection(item.id)}
                 >
                   {isActive ? (
                     <motion.span
@@ -115,7 +158,9 @@ export function Header() {
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Button asChild className="hidden sm:flex shrink-0">
-              <SectionLink sectionId="iletisim">Teklifte Bulunun</SectionLink>
+              <SectionLink sectionId="iletisim" onClick={() => selectSection("iletisim")}>
+                Teklifte Bulunun
+              </SectionLink>
             </Button>
             <ThemeToggle />
             <Button
@@ -143,7 +188,7 @@ export function Header() {
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 }`}
                 onClick={() => {
-                  setActiveSectionId(item.id)
+                  selectSection(item.id)
                   setIsMenuOpen(false)
                 }}
               >
@@ -151,7 +196,13 @@ export function Header() {
               </SectionLink>
             ))}
             <Button asChild className="mt-2">
-              <SectionLink sectionId="iletisim" onClick={() => setIsMenuOpen(false)}>
+              <SectionLink
+                sectionId="iletisim"
+                onClick={() => {
+                  selectSection("iletisim")
+                  setIsMenuOpen(false)
+                }}
+              >
                 Teklifte Bulunun
               </SectionLink>
             </Button>

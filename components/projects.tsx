@@ -8,8 +8,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import { ExternalLink, Github } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Github } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
 
 // Projelerim Kısmı Kartları
@@ -21,21 +20,28 @@ const projects = [
       "Buzdolabınızda bulunan ürünlerin son kullanma tarihleri yaklaştıkça alarm vermesini sağlayan cross-platform mobil uygulama. Bu ",
     image: "/placeholder-project-2.jpg",
     tags: ["Flutter","Dart", "Firebase", "Android", "iOS"],
-    liveUrl: "#",
     githubUrl: "#",
     color: "from-green-500/20 to-emerald-500/20",
   },
   {
     title: "Kütüphane Rezervasyon Sistemi",
     description:
-      "Sik ve profesyonel kurumsal kimlik yansitan, SEO optimizasyonlu ve hizli yuklenen web sitesi.",
+      "Yüksek sayıda kullanıcıya hizmet veren kütüphanelerde saatlik kullanım hakları tanıyan ve farklı kullanım durumlarına olanak tanıyan rezervasyon sistemi.",
     image: "/placeholder-project-3.jpg",
-    tags: ["React", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "#",
+    tags: ["React", "Flutter","Dart", "Nest.js", "PostgreSQL","TypeScript","Android","iOS"],
     githubUrl: "#",
     color: "from-purple-500/20 to-pink-500/20",
-  }
-  /*{
+  },
+  {
+    title: "Kişisel Web Sitesi",
+    description:
+      "Yüksek sayıda kullanıcıya hizmet veren kütüphanelerde saatlik kullanım hakları tanıyan ve farklı kullanım durumlarına olanak tanıyan rezervasyon sistemi.",
+    image: "/placeholder-project-3.jpg",
+    tags: ["React","TypeScript","CSS"],
+    githubUrl: "#",
+    color: "from-purple-500/20 to-pink-500/20",
+  },
+  {
     title: "Task Yonetim Uygulamasi",
     description:
       "Ekip isbirligi icin tasarlanmis, gercek zamanli guncellemeler ve bildirimlerle proje yonetim araci.",
@@ -45,7 +51,7 @@ const projects = [
     githubUrl: "#",
     color: "from-orange-500/20 to-amber-500/20",
   },
-*/ ]
+]
 
 function ProjectCard({
   project,
@@ -96,7 +102,7 @@ function ProjectCard({
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-primary/10 flex items-center justify-center gap-3"
+          className="absolute inset-0 bg-primary/10 flex items-center justify-center"
         >
           <motion.a
             href={project.githubUrl}
@@ -106,30 +112,20 @@ function ProjectCard({
             whileHover={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             className="w-12 h-12 rounded-full bg-card flex items-center justify-center shadow-lg"
+            aria-label={`${project.title} GitHub deposu`}
           >
             <Github className="h-5 w-5 text-foreground" />
-          </motion.a>
-          <motion.a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg"
-          >
-            <ExternalLink className="h-5 w-5 text-primary-foreground" />
           </motion.a>
         </motion.div>
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-semibold text-foreground mb-5 group-hover:text-primary transition-colors">
           {project.title}
         </h3>
         <p className="text-muted-foreground text-sm mb-4 text-pretty">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, tagIndex) => (
             <motion.span
               key={tag}
@@ -148,20 +144,6 @@ function ProjectCard({
           ))}
         </div>
 
-        <div className="flex gap-3">
-          <Button asChild size="sm" variant="outline" className="flex-1">
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <Github className="h-4 w-4 mr-2" />
-              Kaynak Kod
-            </a>
-          </Button>
-          <Button asChild size="sm" className="flex-1">
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Canli Demo
-            </a>
-          </Button>
-        </div>
       </div>
     </motion.div>
   )
