@@ -79,21 +79,24 @@ export function Contact() {
   }
 
   return (
-    <section id="iletisim" className="py-16 sm:py-20">
+    <section
+      id="iletisim"
+      className="relative z-10 -mt-[clamp(8rem,38vh,18rem)] pb-16 pt-4 sm:pb-20 sm:pt-6"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        <AnimatedSection className="text-center mb-6 sm:mb-8">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">
             İletişim
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
             Projenizi Konuşalım
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto text-pretty sm:mt-4">
             Proje fikirleriniz için benimle iletişime geçin. Size en uygun çözümü birlikte bulalım.
           </p>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-5 gap-12">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
           {/* Contact info */}
           <div className="lg:col-span-2 space-y-8">
             <div className="space-y-4">
