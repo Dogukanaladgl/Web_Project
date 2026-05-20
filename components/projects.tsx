@@ -1,13 +1,7 @@
 "use client"
 
-import { useLayoutEffect, useRef, useState } from "react"
-import {
-  motion,
-  useInView,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion"
+import { useRef } from "react"
+import { motion, useInView, useReducedMotion } from "framer-motion"
 import { Github } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
 
@@ -53,163 +47,79 @@ const projects = [
   },
 ]
 
+const cardBaseClass =
+  "group rounded-2xl bg-card border border-border overflow-hidden transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+
 function ProjectCard({
   project,
   index,
-  scrollLinked,
   layout = "carousel",
 }: {
   project: (typeof projects)[0]
   index: number
-  scrollLinked?: boolean
   layout?: "carousel" | "grid"
 }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
+  const layoutClass =
+    layout === "grid"
+      ? "w-full"
+      : "shrink-0 snap-start w-[min(22rem,calc(100vw-2.5rem))] sm:w-96 max-w-md"
+
   return (
-    <motion.div
+    <motion.article
       ref={ref}
-      initial={scrollLinked ? false : { opacity: 0, y: 50 }}
-      animate={
-        scrollLinked ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-      }
-      transition={{ duration: 0.6, delay: scrollLinked ? 0 : index * 0.15 }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className={
-        layout === "grid"
-          ? "group w-full rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-          : "group shrink-0 snap-start rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 w-[min(22rem,calc(100vw-2.5rem))] sm:w-96 max-w-md"
-      }
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.45, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className={`${cardBaseClass} ${layoutClass}`}
     >
       <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-        <motion.div
-          initial={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.4 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <motion.div
-            initial={{ rotate: 0 }}
-            whileHover={{ rotate: 5 }}
-            className="w-20 h-20 rounded-2xl bg-card/80 backdrop-blur-sm flex items-center justify-center shadow-lg"
-          >
+        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-200 ease-out group-hover:scale-[1.04] motion-reduce:group-hover:scale-100">
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-card/80 shadow-lg backdrop-blur-sm transition-transform duration-200 ease-out group-hover:rotate-2 motion-reduce:group-hover:rotate-0">
             <span className="text-3xl font-bold text-primary">{project.title[0]}</span>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-primary/10 flex items-center justify-center"
-        >
-          <motion.a
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-primary/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 motion-reduce:group-hover:opacity-0">
+          <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            className="w-12 h-12 rounded-full bg-card flex items-center justify-center shadow-lg"
+            className="pointer-events-auto flex h-12 w-12 scale-95 items-center justify-center rounded-full bg-card opacity-0 shadow-lg transition-[transform,opacity] duration-200 ease-out group-hover:scale-100 group-hover:opacity-100 hover:scale-105 motion-reduce:opacity-100 motion-reduce:scale-100"
             aria-label={`${project.title} GitHub deposu`}
           >
             <Github className="h-5 w-5 text-foreground" />
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-foreground mb-5 group-hover:text-primary transition-colors">
+        <h3 className="mb-5 text-xl font-semibold text-foreground transition-colors duration-200 ease-out group-hover:text-primary">
           {project.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4 text-pretty">{project.description}</p>
+        <p className="mb-4 text-pretty text-sm text-muted-foreground">{project.description}</p>
 
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, tagIndex) => (
             <motion.span
               key={tag}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={
-                scrollLinked || isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-              }
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{
-                duration: 0.3,
-                delay: scrollLinked ? 0 : index * 0.15 + tagIndex * 0.05 + 0.3,
+                duration: 0.25,
+                delay: index * 0.08 + tagIndex * 0.03 + 0.15,
               }}
-              className="px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground"
+              className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground"
             >
               {tag}
             </motion.span>
           ))}
         </div>
-
       </div>
-    </motion.div>
-  )
-}
-
-function ProjectsScrollStrip() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const stickyRef = useRef<HTMLDivElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const [scrollMax, setScrollMax] = useState(0)
-
-  useLayoutEffect(() => {
-    const track = trackRef.current
-    const sticky = stickyRef.current
-    if (!track || !sticky) return
-
-    const measure = () => {
-      const vw = sticky.clientWidth
-      const max = Math.max(0, track.scrollWidth - vw)
-      setScrollMax(max)
-    }
-
-    measure()
-    const ro = new ResizeObserver(measure)
-    ro.observe(track)
-    ro.observe(sticky)
-    window.addEventListener("resize", measure)
-    return () => {
-      ro.disconnect()
-      window.removeEventListener("resize", measure)
-    }
-  }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollMax])
-
-  return (
-    <div
-      ref={containerRef}
-      className="relative w-full -mb-12 sm:-mb-16"
-      style={
-        scrollMax > 0
-          ? { height: `calc(100dvh + ${scrollMax}px)` }
-          : { minHeight: "min(55dvh, 28rem)" }
-      }
-    >
-      <div
-        ref={stickyRef}
-        data-projects-sticky
-        className="sticky top-16 flex h-[calc(100dvh-4rem)] max-h-[calc(100vh-4rem)] items-start overflow-hidden pt-2 sm:pt-3"
-      >
-        <motion.div
-          ref={trackRef}
-          style={{ x }}
-          className="flex w-max gap-6 will-change-transform pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8"
-        >
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} scrollLinked />
-          ))}
-        </motion.div>
-      </div>
-    </div>
+    </motion.article>
   )
 }
 
@@ -229,30 +139,40 @@ function ProjectsGrid() {
   )
 }
 
-function ProjectsOverflowFallback() {
+function ProjectsCarousel() {
   return (
-    <div className="-mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
       <div
         role="region"
         aria-roledescription="carousel"
         aria-label="Proje kartları — yatay kaydırın"
-        className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 pt-1 snap-x snap-mandatory scroll-smooth scroll-pl-4 scroll-pr-4 sm:scroll-pl-6 sm:scroll-pr-6 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/70 hover:[&::-webkit-scrollbar-thumb]:bg-border"
+        className="flex gap-6 overflow-x-auto overflow-y-hidden overscroll-x-contain px-4 pb-4 pt-1 snap-x snap-mandatory scroll-smooth scroll-pl-4 scroll-pr-4 sm:px-6 sm:scroll-pl-6 sm:scroll-pr-6 lg:px-8 lg:scroll-pl-8 lg:scroll-pr-8 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/70 hover:[&::-webkit-scrollbar-thumb]:bg-border"
       >
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent sm:w-12"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:w-12"
+      />
     </div>
   )
 }
 
 export function Projects() {
   const reduceMotion = useReducedMotion()
-  const preferOverflowScroll = reduceMotion === true
-  const useScrollStrip = projects.length > 3 && !preferOverflowScroll
+  const useCarousel = projects.length > 3 && reduceMotion !== true
 
   return (
-    <section id="projeler" className="relative border-y border-border/25 bg-transparent pt-16 pb-4 sm:pt-20 sm:pb-5">
+    <section
+      id="projeler"
+      className="relative border-y border-border/25 bg-transparent pt-16 pb-4 sm:pt-20 sm:pb-5"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-5 text-center sm:mb-6">
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
@@ -266,13 +186,7 @@ export function Projects() {
           </p>
         </AnimatedSection>
 
-        {useScrollStrip ? (
-          <ProjectsScrollStrip />
-        ) : preferOverflowScroll ? (
-          <ProjectsOverflowFallback />
-        ) : (
-          <ProjectsGrid />
-        )}
+        {useCarousel ? <ProjectsCarousel /> : <ProjectsGrid />}
       </div>
     </section>
   )
