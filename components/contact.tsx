@@ -81,7 +81,7 @@ export function Contact() {
   return (
     <section
       id="iletisim"
-      className="relative z-10 -mt-[clamp(8rem,38vh,18rem)] pb-16 pt-4 sm:pb-20 sm:pt-6"
+      className="relative z-10 pb-16 pt-16 sm:pb-20 sm:pt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-6 sm:mb-8">
