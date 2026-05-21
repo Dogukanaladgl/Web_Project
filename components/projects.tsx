@@ -186,7 +186,18 @@ export function Projects() {
           </p>
         </AnimatedSection>
 
-        {useCarousel ? <ProjectsCarousel /> : <ProjectsGrid />}
+        {useCarousel ? (
+          <>
+            <div className="md:hidden">
+              <ProjectsGrid />
+            </div>
+            <div className="hidden md:block">
+              <ProjectsCarousel />
+            </div>
+          </>
+        ) : (
+          <ProjectsGrid />
+        )}
       </div>
     </section>
   )
