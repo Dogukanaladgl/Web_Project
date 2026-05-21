@@ -217,7 +217,7 @@ export function Timeline() {
   const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <section id="deneyim" className="py-24 overflow-hidden">
+    <section id="deneyim" className="relative py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
