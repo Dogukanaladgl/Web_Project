@@ -97,8 +97,8 @@ export function Contact() {
         </AnimatedSection>
 
         <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
-          {/* Contact info */}
-          <div className="lg:col-span-2 space-y-8">
+          {/* Contact info — mobilde formun altında */}
+          <div className="order-2 space-y-8 lg:order-none lg:col-span-2">
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
                 <motion.a
@@ -134,13 +134,13 @@ export function Contact() {
             </AnimatedSection>
           </div>
 
-          {/* Contact form */}
+          {/* Contact form — mobilde üstte */}
           <motion.div
             ref={formRef}
             initial={{ opacity: 0, y: 40 }}
             animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3"
+            className="order-1 lg:order-none lg:col-span-3"
           >
             <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-card border border-border relative overflow-hidden">
               {/* Success overlay */}
