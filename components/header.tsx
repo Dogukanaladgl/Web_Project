@@ -21,14 +21,10 @@ export function Header() {
     setActiveSectionId(id)
   }, [])
 
-  /** Eski veya paylaşılan #bölüm adresleri: bir kez kaydır ve URL’den hash’i kaldır */
+  /** Yenilemede #fragment ile eski konuma dönülmesin — hash varsa temizle */
   useEffect(() => {
-    const hash = window.location.hash.slice(1)
-    if (!hash || !document.getElementById(hash)) return
-    requestAnimationFrame(() => {
-      scrollToSectionById(hash)
-      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`)
-    })
+    if (!window.location.hash) return
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`)
   }, [])
 
   useEffect(() => {
