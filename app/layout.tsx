@@ -72,6 +72,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${geistSans.className} font-sans antialiased bg-background text-foreground`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);})();`,
+          }}
+        />
         <a
           href="#anasayfa"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-ring"
