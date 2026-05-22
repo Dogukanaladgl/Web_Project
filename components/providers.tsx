@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ScrollResetOnLoad } from "@/components/scroll-reset-on-load"
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem={false}
       disableTransitionOnChange
     >
+      <ScrollResetOnLoad />
       {children}
     </ThemeProvider>
   )
