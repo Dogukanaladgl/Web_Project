@@ -4,6 +4,12 @@ import { useRef } from "react"
 import { motion, useInView, useReducedMotion } from "framer-motion"
 import { Github } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
+import { socialConfig } from "@/lib/social-config"
+
+function resolveGithubHref(url: string | undefined) {
+  if (url && url !== "#") return url
+  return socialConfig.github
+}
 
 // Projelerim Kısmı Kartları
 const projects = [
@@ -85,11 +91,15 @@ function ProjectCard({
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-primary/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 motion-reduce:group-hover:opacity-0">
           <a
-            href={project.githubUrl}
+            href={resolveGithubHref(project.githubUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="pointer-events-auto flex h-12 w-12 scale-95 items-center justify-center rounded-full bg-card opacity-0 shadow-lg transition-[transform,opacity] duration-200 ease-out group-hover:scale-100 group-hover:opacity-100 hover:scale-105 motion-reduce:opacity-100 motion-reduce:scale-100"
-            aria-label={`${project.title} GitHub deposu`}
+            aria-label={
+              project.githubUrl && project.githubUrl !== "#"
+                ? `${project.title} GitHub deposu`
+                : "GitHub profilim"
+            }
           >
             <Github className="h-5 w-5 text-foreground" />
           </a>
