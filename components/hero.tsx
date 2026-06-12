@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { SectionLink } from "@/components/section-link"
-import { ArrowRight, BriefcaseBusiness, GraduationCap, Mail, MapPin, Sparkles, Download } from "lucide-react"
+import { ArrowRight, Briefcase, BriefcaseBusiness, GraduationCap, Mail, MapPin, Sparkles, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const profileHighlights = [
@@ -162,9 +162,15 @@ export function Hero() {
               </Button>
               <Button asChild variant="outline" className="w-full">
                 <SectionLink sectionId="deneyim">
-                  <Download className="h-4 w-4 mr-2" />
+                  <Briefcase className="h-4 w-4 mr-2" />
                   Deneyimlerimi Gor
                 </SectionLink>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <a href="/CV.pdf" download="Dogukan-Aladagli-CV.pdf">
+                  <Download className="h-4 w-4 mr-2" />
+                  CV
+                </a>
               </Button>
             </motion.div>
           </motion.div>
